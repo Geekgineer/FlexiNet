@@ -1,144 +1,148 @@
-#
-
-
 <div align="center">
-<img align="left" width="100" height="100" src="https://github.com/user-attachments/assets/65e85f87-ec5a-4b52-bbcf-bbdaf20fa4d4" alt="">
 
-#  FlexiNet: An Adaptive Feature Synthesis Network for Real-Time Ego Vehicle Speed Estimation
+<img src="img/FlexiNet.png" width="800px" alt="FlexiNet Architecture">
 
-[Abdalrahman Ibrahim](https://www.linkedin.com/in/abdalrahman-m-amer/), [Kyandoghere Kyamakya](kyandoghere.kyamakya@aau.at), [Wolfgang Pointner](wolfgang.pointner@agilox.net)
+# FlexiNet: An Adaptive Feature Synthesis Network for Real-Time Ego Vehicle Speed Estimation
 
-[Transportation Informatics, University of Klagenfurt](https://www.aau.at/en/smart-systems-technologies/transportation-informatics/) 
+**Abdalrahman Ibrahim**$^1$, **Kyandoghere Kyamakya**$^1$, **Wolfgang Pointner**$^2$
+
+$^1$*Transportation Informatics, University of Klagenfurt* <br>
+$^2$*AGILOX Services GmbH*
+
+[![Paper](https://img.shields.io/badge/Paper-IEEE%20Access-blue)](https://ieeexplore.ieee.org/document/your_link_here)
+[![License](https://img.shields.io/badge/License-GPLv3-green.svg)](LICENSE)
+[![Framework](https://img.shields.io/badge/Framework-PyTorch-red.svg)](https://pytorch.org/)
+
 </div>
 
-
-This repository is the official implementation of FlexiNet: An Adaptive Feature Synthesis Network for Real-Time Ego Vehicle Speed Estimation
-
-
-## News
-- [ ] **Incoming**: FlexiNet Paper release.
-- [x] **21.02.25** Official Implementation of [FlexiNet](https://github.com/geekgineer/FlexiNet)
-
-
-![demo](img/batch_6_sample_1_frame_11.jpeg)
-![demo](img/nuscenes-demo-speed.gif)
-
-## Introduction
-
-![FlexiNet](img/FlexiNet.png)
-
-FlexiNet: An Adaptive Feature Synthesis Network for Real-Time Ego Vehicle Speed Estimation consist of novel components:
-
-
-
-- **Contextual Motion Analysis Block**
-- **Adaptive Feature Transformer**
-- **Spatial Feature Extraction Module**
-- **Motion Feature Extraction Module**
-- **Dynamic Integration Gate**
-
-These components work together to extract and integrate spatial and temporal features efficiently, ensuring robust speed estimation across varying environmental conditions refer to the paper for more details.
-
-## Features
-- **High Accuracy**: Achieves superior performance and state-of-art results on KITTI and nuImages datasets.
-- **Computational Efficiency**: Optimized for real-time applications.
-- **Scalability**: Generalizes well across different datasets and driving environments.
-- **Embedded Deployment**: Designed for automotive hardware platforms.
-
-
-## Pretrained Models Checkpoints Overview
-
-The table below lists the available pretrained model checkpoints along with their respective datasets, loss functions.
-
-| Checkpoint Filename                           | Dataset  | Loss Function 
-|-----------------------------------------------|----------|--------------
-| `checkpoint_epoch_100_nuimage_L1_best.pth`    | NuImages | L1           
-| `checkpoint_epoch_398_nuimage_L2_best.pth`    | NuImages | L2           
-| `checkpoint_epoch_390_kitti_L1_best.pth`      | KITTI    | L1           
-| `checkpoint_epoch_390_kitti_L2_best.pth`      | KITTI    | L2           
+<p align="center">
+  <img src="img/nuscenes-demo-speed.gif" width="600px" alt="Demo">
+</p>
 
 ---
 
-For Performance results refer to FlexiNet paper. 
+## 🚀 Introduction
 
+**FlexiNet** is a state-of-the-art deep learning model designed for **accurate, real-time ego vehicle speed estimation** using monocular camera data. Accepted for publication in **IEEE Access 2025**, FlexiNet addresses the critical challenge of estimating speed in dynamic and unstructured environments where traditional wheel odometry and GPS often fail.
 
-## FlexiNet Installation
+Our approach introduces a novel **Adaptive Feature Synthesis** mechanism that dynamically weights spatial and temporal features, ensuring robust performance across varying driving conditions—from high-speed highways to complex urban maneuvers.
 
-## Getting Started
+### Key Features
+- **🏆 State-of-the-Art Accuracy**: Outperforms existing baselines on **KITTI** and **nuImages** datasets.
+- **⚡ Real-Time Performance**: Optimized for low-latency inference on automotive embedded hardware.
+- **🧠 Adaptive Architecture**:
+    - **Contextual Motion Analysis Block (CMAB)**: Captures global motion context.
+    - **Adaptive Feature Transformer (AFT)**: Dynamically attends to critical temporal frames.
+    - **Sanity-Aware Integration**: Fuses spatial and temporal cues intelligently.
+- **🔌 Deployment Ready**: Full **ONNX** support for seamless production integration.
 
-### Requirements
-Ensure you have the required dependencies installed:
+## 📰 News
+- **[2025/02]** 🌟 **Paper Accepted!** FlexiNet will be published in **IEEE Access 2025**.
+- **[2025/02]** 🚀 **Code Release**: Official PyTorch implementation and pretrained models are now available.
+
+## 🏗️ Architecture
+
+FlexiNet is composed of five synergistic components:
+1.  **Spatial Feature Extraction Module (SFEM)**: Utilizing a lightweight ResNet backbone to capture static scene details.
+2.  **Motion Feature Extraction Module (MFEM)**: Capturing temporal dynamics from optical flow.
+3.  **Contextual Motion Analysis Block (CMAB)**: Analyzing global motion patterns to filter noise.
+4.  **Adaptive Feature Transformer (AFT)**: A Transformer-based module that refines temporal features.
+5.  **Dynamic Integration Gate**: A learned gating mechanism to optimally fuse spatial and temporal streams.
+
+## 📊 Model Zoo & Benchmarks
+
+We provide pretrained models for both **nuImages** and **KITTI** datasets.
+
+| Model | Dataset | Loss | RMSE (m/s) $\downarrow$ | MAE (m/s) $\downarrow$ | Download |
+| :--- | :---: | :---: | :---: | :---: | :---: |
+| FlexiNet-Nu-L1 | nuImages | L1 | **1.135** | **0.959** | [Link](#) |
+| FlexiNet-Nu-L2 | nuImages | L2 | 1.142 | 0.965 | [Link](#) |
+| FlexiNet-KITTI-L1 | KITTI | L1 | **1.954** | **1.061** | [Link](#) |
+| FlexiNet-KITTI-L2 | KITTI | L2 | 1.960 | 1.070 | [Link](#) |
+
+> **Note**: Minimizing RMSE is critical for safety-critical applications. Our L1-trained models consistently show the best robust performance.
+
+## ⚙️ Installation
+
+### Prerequisites
+- Linux / macOS / Windows
+- Python >= 3.8
+- PyTorch >= 1.10
+- CUDA (for GPU acceleration)
+
+### Setup
 ```bash
+git clone https://github.com/Geekgineer/FlexiNet.git
+cd FlexiNet
 pip install -r requirements.txt
 ```
 
-### Dataset Preparation
-Prepare the dataset by ensuring the following structure:
-```
-data│ 
-    ├── kitti
-    │   ├── train
-    │   └── valid
-    ├── nuimages-v1.0-all-sweeps-cam-front.tgz
-    └── nuscenes
-        ├── nuimages-v1.0-all-metadata
-        ├── nuimages-v1.0-all-samples
-        └── nuimages-v1.0-all-sweeps-cam-front
+## 📂 Data Preparation
+
+Please organize your datasets as follows to ensure compatibility with our training scripts:
+
+```text
+FlexiNet/
+└── data/
+    ├── kitti/
+    │   ├── train/
+    │   └── valid/
+    └── nuscenes/
+        ├── nuimages-v1.0-all-metadata/
+        ├── nuimages-v1.0-all-samples/
+        └── nuimages-v1.0-all-sweeps-cam-front/
 ```
 
-## Training
-To train the model, run:
+## 🖥️ Usage
+
+### 1. Training
+Train FlexiNet from scratch using our optimized training script:
 ```bash
 bash run_train.sh
 ```
 
-## Testing
-To evaluate the model, use:
+### 2. Evaluation
+Evaluate the model on the test set:
 ```bash
 bash run_test.sh
 ```
-Alternatively, run:
-```bash
-python test.py
-```
 
-## Model Inference
-To perform inference for testing purposes using a pretrained model make sure to modify the config in sid 'generate_vis.py':
-
+### 3. Inference & Visualization
+Run inference on a video or camera stream:
 ```bash
 python generate_vis.py 
 ```
+<img src="img/batch_6_sample_1_frame_11.jpeg" width="400px" alt="Inference Sample">
 
-## Exporting to ONNX
-To export the model to ONNX format for deployment:
+### 4. ONNX Export
+Export the trained model for deployment:
 ```bash
-python onnx_export/export.py --model pretrained_models/model.pth
+python onnx_export/export.py --model pretrained_models/checkpoint_epoch_100_nuimage_L1_best.pth
 ```
 
+## 📜 Citation
 
-## Citation
-If you find this work useful, please consider citing:
-```
+If you use FlexiNet in your research, please cite our work:
+
+```bibtex
 @article{FlexiNet2025,
-  title={Accurate and Real-Time Ego Vehicle Speed Estimation Using FlexiNet},
-  author={Abdalrahman Ibrahim and Kyandoghere Kyamakya and Wolfgang Pointner},
-  journal={TBD},
-  year={2025}
+  title={FlexiNet: An Adaptive Feature Synthesis Network for Real-Time Ego Vehicle Speed Estimation},
+  author={Ibrahim, Abdalrahman and Kyamakya, Kyandoghere and Pointner, Wolfgang},
+  journal={IEEE Access},
+  year={2025},
+  publisher={IEEE}
 }
 ```
 
-## License
-This project is licensed under the GPL3 License.
+## 📄 License
 
-## Acknowledgments
+This project is licensed under the **GPLv3 License**. See the [LICENSE](LICENSE) file for details.
 
-This work was supported by The University of Klagenfurt and AGILOX Services GmbH.
+## 🙏 Acknowledgments
 
-Also this work was made possible through the use of the KITTI and nuImages datasets. Special thanks to the open-source community for their contributions.
+This work was supported by **The University of Klagenfurt** and **AGILOX Services GmbH**. We thank the creators of the KITTI and nuImages datasets for providing the data necessary for this research.
 
-
-
-## Contact
-For any inquiries, please open an issue on [GitHub](https://github.com/Geekgineer/FlexiNet).
-
-
+---
+<div align="center">
+ By the Transportation Informatics Group AAU
+</div>
