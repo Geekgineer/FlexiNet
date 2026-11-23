@@ -9,7 +9,7 @@
 $^1$*Transportation Informatics, University of Klagenfurt* <br>
 $^2$*AGILOX Services GmbH*
 
-[![Paper](https://img.shields.io/badge/Paper-IEEE%20Access-blue)](https://ieeexplore.ieee.org/document/your_link_here)
+[![Paper](https://img.shields.io/badge/Paper-IEEE%20Access-blue)](https://doi.org/10.1109/ACCESS.2025.3562229)
 [![License](https://img.shields.io/badge/License-GPLv3-green.svg)](LICENSE)
 [![Framework](https://img.shields.io/badge/Framework-PyTorch-red.svg)](https://pytorch.org/)
 
@@ -23,7 +23,7 @@ $^2$*AGILOX Services GmbH*
 
 ## 🚀 Introduction
 
-**FlexiNet** is a state-of-the-art deep learning model designed for **accurate, real-time ego vehicle speed estimation** using monocular camera data. Accepted for publication in **IEEE Access 2025**, FlexiNet addresses the critical challenge of estimating speed in dynamic and unstructured environments where traditional wheel odometry and GPS often fail.
+**FlexiNet** is a state-of-the-art deep learning model designed for **accurate, real-time ego vehicle speed estimation** using monocular camera data. Published in **IEEE Access** (vol. 13, 2025), FlexiNet addresses the critical challenge of estimating speed in dynamic and unstructured environments where traditional wheel odometry and GPS often fail.
 
 Our approach introduces a novel **Adaptive Feature Synthesis** mechanism that dynamically weights spatial and temporal features, ensuring robust performance across varying driving conditions—from high-speed highways to complex urban maneuvers.
 
@@ -37,7 +37,8 @@ Our approach introduces a novel **Adaptive Feature Synthesis** mechanism that dy
 - **🔌 Deployment Ready**: Full **ONNX** support for seamless production integration.
 
 ## 📰 News
-- **[2025/02]** 🌟 **Paper Accepted!** FlexiNet will be published in **IEEE Access 2025**.
+- **[2025]** 📄 **Published** in IEEE Access, vol. 13, pp. 71082-71100. [doi:10.1109/ACCESS.2025.3562229](https://doi.org/10.1109/ACCESS.2025.3562229)
+- **[2025/02]** 🌟 **Paper Accepted** to IEEE Access.
 - **[2025/02]** 🚀 **Code Release**: Official PyTorch implementation and pretrained models are now available.
 
 ## 🏗️ Architecture
@@ -129,8 +130,11 @@ If you use FlexiNet in your research, please cite our work:
   title={FlexiNet: An Adaptive Feature Synthesis Network for Real-Time Ego Vehicle Speed Estimation},
   author={Ibrahim, Abdalrahman and Kyamakya, Kyandoghere and Pointner, Wolfgang},
   journal={IEEE Access},
+  volume={13},
+  pages={71082--71100},
   year={2025},
-  publisher={IEEE}
+  publisher={IEEE},
+  doi={10.1109/ACCESS.2025.3562229}
 }
 ```
 
